@@ -262,7 +262,7 @@ const GAMES = [
     id: 1,
     title: "jews",           // ← game name
     category: "Arcade",              // ← pick a category
-    emoji: "🚀",                     // ← emoji thumbnail
+    image: "images/my-game.png",                     // ← emoji thumbnail
     color: "#7c5cfc",                // ← card accent color
     description: "My first game!",   // ← short description
     url: "games/my-game/index.html", // ← path to your game file
@@ -376,7 +376,7 @@ function render() {
     featuredRow.innerHTML = featured.map(g => `
       <div class="featured-card" style="background:linear-gradient(135deg,${g.color},${g.color}88)"
         onclick="playGame(${g.id})">
-        <div class="featured-bg">${g.emoji}</div>
+        <div class="featured-bg">${g.image ? `<img src="${g.image}" style="width:100%;height:100%;object-fit:cover;">` : g.emoji}</div>
         <div class="featured-badge">Featured</div>
         <div class="featured-content">
           <h3>${g.title}</h3>
@@ -408,7 +408,7 @@ function render() {
     grid.innerHTML = filtered.map(g => `
       <div class="card" onclick="playGame(${g.id})">
         <div class="card-thumb" style="background:linear-gradient(135deg,${g.color}33,${g.color}11)">
-          ${g.emoji}
+          ${g.image ? `<img src="${g.image}" style="width:100%;height:100%;object-fit:cover;">` : g.emoji}
         </div>
         <div class="card-info">
           <h3>${g.title}</h3>
