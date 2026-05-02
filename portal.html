@@ -345,7 +345,7 @@ function setCategory(cat) {
 function playGame(id) {
   const game = GAMES.find(g => g.id === id);
   if (!game) return;
-  document.getElementById("playerTitle").textContent = game.emoji + " " + game.title;
+  document.getElementById("playerTitle").textContent = (game.emoji || "") + " " + game.title;
   document.getElementById("playerFrame").src = game.url;
   document.getElementById("playerOverlay").classList.add("open");
 }
