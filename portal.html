@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CSHQX2NGBK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CSHQX2NGBK');
+</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ISSACNEWTONINFO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Space+Mono:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #12121a;
+      --bg-card: #1a1a26;
+      --bg-card-hover: #222233;
+      --text-primary: #f0f0f5;
+      --text-secondary: #8888a0;
+      --accent: #7c5cfc;
+      --accent-glow: rgba(124, 92, 252, 0.3);
+      --accent-alt: #ff6b9d;
+      --border: rgba(255,255,255,0.06);
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+    /* ── Header ── */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 32px;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      cursor: pointer;
+      user-select: none;
+    }
+    .search-box { position: relative; width: 300px; }
+    .search-box input {
+      width: 100%;
+      padding: 10px 16px 10px 38px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text-primary);
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .search-box input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+    .search-box input::placeholder { color: var(--text-secondary); }
+    .search-icon {
+      position: absolute; left: 13px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-secondary); font-size: 16px; pointer-events: none;
+    }
+
+    /* ── Categories ── */
+    .category-bar {
+      display: flex; gap: 8px; padding: 20px 32px 10px; flex-wrap: wrap;
+    }
+    .pill {
+      padding: 7px 18px;
+      border-radius: 99px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .pill:hover { border-color: var(--accent); color: var(--text-primary); }
+    .pill.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+    /* ── Featured ── */
+    .section { padding: 20px 32px; }
+    .section-title {
+      font-size: 15px; font-weight: 600; color: var(--text-secondary);
+      text-transform: uppercase; letter-spacing: 2px; margin-bottom: 14px;
+    }
+    .featured-row { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 8px; }
+    .featured-card {
+      flex: 0 0 280px; height: 160px; border-radius: var(--radius);
+      position: relative; overflow: hidden; cursor: pointer;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .featured-card:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+    .featured-bg {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 72px; opacity: 0.25; filter: blur(2px);
+    }
+    .featured-badge {
+      position: absolute; top: 12px; left: 12px;
+      background: var(--accent-alt); color: #fff;
+      font-size: 10px; font-weight: 700;
+      padding: 3px 10px; border-radius: 99px;
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+    .featured-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 16px 18px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    }
+    .featured-content h3 { font-size: 18px; font-weight: 700; }
+    .featured-content p { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 2px; }
+
+    /* ── Game Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; cursor: pointer;
+      transition: all 0.25s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3), 0 0 0 1px var(--accent-glow);
+      background: var(--bg-card-hover);
+    }
+    .card-thumb {
+      height: 120px; display: flex; align-items: center;
+      justify-content: center; font-size: 48px;
+      position: relative; overflow: hidden;
+    }
+    .card-thumb::after {
+      content: '▶'; position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; color: #fff; background: rgba(0,0,0,0.5);
+      opacity: 0; transition: opacity 0.2s;
+    }
+    .card:hover .card-thumb::after { opacity: 1; }
+    .card-info { padding: 12px 14px; }
+    .card-info h3 { font-size: 15px; font-weight: 600; }
+    .card-info .tag { font-size: 11px; color: var(--accent); font-weight: 500; margin-top: 3px; }
+
+    /* ── Player Overlay ── */
+    .player-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.9);
+      display: none; flex-direction: column;
+      animation: fadeIn 0.2s;
+    }
+    .player-overlay.open { display: flex; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .player-top {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 24px;
+      background: var(--bg-secondary); border-bottom: 1px solid var(--border);
+    }
+    .player-top h2 { font-size: 16px; font-weight: 600; }
+    .close-btn {
+      background: none; border: 1px solid var(--border);
+      color: var(--text-primary); font-size: 14px;
+      padding: 6px 16px; border-radius: 8px; cursor: pointer;
+      font-family: 'Outfit', sans-serif; font-weight: 500;
+      transition: all 0.2s;
+    }
+    .close-btn:hover { background: var(--accent); border-color: var(--accent); }
+    .player-body {
+      flex: 1; display: flex; align-items: center;
+      justify-content: center; padding: 16px;
+    }
+    .player-body iframe {
+      width: 100%; height: 100%; max-width: 1100px;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      background: #000;
+    }
+
+    /* ── Empty / Footer ── */
+    .empty {
+      text-align: center; padding: 60px 20px; color: var(--text-secondary);
+    }
+    .empty span { font-size: 48px; display: block; margin-bottom: 12px; }
+    .footer {
+      text-align: center; padding: 24px;
+      color: var(--text-secondary); font-size: 12px;
+      border-top: 1px solid var(--border); margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo" onclick="resetFilters()">ISSACNEWTONINFO</div>
+    <div class="search-box">
+      <span class="search-icon">&#x2315;</span>
+      <input type="text" id="searchInput" placeholder="Search games..." oninput="render()" />
+    </div>
+  </header>
+
+  <!-- Categories -->
+  <div class="category-bar" id="categoryBar"></div>
+
+  <!-- Featured -->
+  <section class="section" id="featuredSection">
+    <h2 class="section-title">Featured</h2>
+    <div class="featured-row" id="featuredRow"></div>
+  </section>
+
+  <!-- All Games -->
+  <section class="section">
+    <h2 class="section-title" id="gridTitle">All Games</h2>
+    <div class="grid" id="gamesGrid"></div>
+    <div class="empty" id="emptyState" style="display:none">
+      <span>&#x1F579;&#xFE0F;</span> No games found. Try a different search.
+    </div>
+  </section>
+
+  <footer class="footer">ISSACNEWTONINFO &mdash; Built by big yahu n friends</footer>
+
+  <!-- Player Overlay -->
+  <div class="player-overlay" id="playerOverlay">
+    <div class="player-top">
+      <h2 id="playerTitle"></h2>
+      <button class="close-btn" onclick="closeGame()">&#x2715; Close</button>
+    </div>
+    <div class="player-body">
+      <iframe id="playerFrame" src="" allow="autoplay; fullscreen"
+        sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
+    </div>
+  </div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+//  GAME CATALOG — EDIT THIS TO ADD YOUR OWN GAMES
+// ═══════════════════════════════════════════════════════════════
+const GAMES = [
+  {
+    id: 1,
+    title: "Bad Piggies",           // ← game name
+    category: "Arcade",              // ← pick a category
+    image: "images/badpiggies.jpg",                     // ← emoji thumbnail
+    color: "#7c5cfc",                // ← card accent color
+    description: "Bad bad piggies",   // ← short description
+    url: "games/badpiggies/index.html", // ← path to your game file
+    featured: true,                  // ← show in featured banner?
+  },
+  // ── Example games (replace or remove these) ──
+  {
+    id: 2,
+    title: "Hextris",
+    category: "Arcade",
+    emoji: "⬡",
+    color: "#e84855",
+    description: "A fast puzzle game inspired by Tetris.",
+    url: "https://hextris.io/",
+    featured: true,
+  },
+  {
+    id: 3,
+    title: "Balatro",
+    category: "Strategy",
+    image: "images/balatro.jpg",
+    color: "#c27c15",
+    description: "poker roguelite",
+    url: "games/balatro/balatro.html",
+    featured: true,
+  },
+  {
+    id: 4,
+    title: "Brotato",
+    category: "Strategy",
+    image: "images/brotato.png",
+    color: "##ffe6fc",
+    description: "Potato Run-n-Gun",
+    url: "games/brotato/brotato2.html",
+    featured: true,
+  },
+  {
+    id: 5,
+    title: "T^3 Horror",
+    category: "Horror",
+    image: "images/tungsahur.jpg",
+    color: "##e6f5e9",
+    description: "Run from T^3!",
+    url: "games/tungsahur/tung_sahur_horror.html",
+    featured: true,
+  },
+];
+// ═══════════════════════════════════════════════════════════════
+
+
+// ── State ──
+let currentCategory = "All";
+
+// ── Helpers ──
+function getCategories() {
+  const cats = new Set(GAMES.map(g => g.category));
+  return ["All", ...cats];
+}
+
+function resetFilters() {
+  currentCategory = "All";
+  document.getElementById("searchInput").value = "";
+  render();
+}
+
+function setCategory(cat) {
+  currentCategory = cat;
+  render();
+}
+
+function playGame(id) {
+  const game = GAMES.find(g => g.id === id);
+  if (!game) return;
+  document.getElementById("playerTitle").textContent = game.emoji + " " + game.title;
+  document.getElementById("playerFrame").src = game.url;
+  document.getElementById("playerOverlay").classList.add("open");
+}
+
+function closeGame() {
+  document.getElementById("playerOverlay").classList.remove("open");
+  document.getElementById("playerFrame").src = "";
+}
+
+// Close on Escape
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeGame(); });
+
+// ── Render ──
+function render() {
+  const search = document.getElementById("searchInput").value.toLowerCase();
+
+  // Categories
+  const catBar = document.getElementById("categoryBar");
+  catBar.innerHTML = getCategories().map(cat =>
+    `<button class="pill ${currentCategory === cat ? 'active' : ''}"
+      onclick="setCategory('${cat}')">${cat}</button>`
+  ).join("");
+
+  // Featured
+  const featuredSection = document.getElementById("featuredSection");
+  const featuredRow = document.getElementById("featuredRow");
+  if (currentCategory === "All" && !search) {
+    featuredSection.style.display = "";
+    const featured = GAMES.filter(g => g.featured);
+    featuredRow.innerHTML = featured.map(g => `
+      <div class="featured-card" style="background:linear-gradient(135deg,${g.color},${g.color}88)"
+        onclick="playGame(${g.id})">
+        <div class="featured-bg">${g.image ? `<img src="${g.image}" style="width:100%;height:100%;object-fit:cover;">` : g.emoji}</div>
+        <div class="featured-badge">Featured</div>
+        <div class="featured-content">
+          <h3>${g.title}</h3>
+          <p>${g.description}</p>
+        </div>
+      </div>
+    `).join("");
+  } else {
+    featuredSection.style.display = "none";
+  }
+
+  // Grid
+  const filtered = GAMES.filter(g => {
+    const matchCat = currentCategory === "All" || g.category === currentCategory;
+    const matchSearch = g.title.toLowerCase().includes(search) ||
+                        g.description.toLowerCase().includes(search);
+    return matchCat && matchSearch;
+  });
+
+  document.getElementById("gridTitle").textContent =
+    currentCategory === "All" ? "All Games" : currentCategory;
+
+  const grid = document.getElementById("gamesGrid");
+  const empty = document.getElementById("emptyState");
+
+  if (filtered.length > 0) {
+    empty.style.display = "none";
+    grid.style.display = "";
+    grid.innerHTML = filtered.map(g => `
+      <div class="card" onclick="playGame(${g.id})">
+        <div class="card-thumb" style="background:linear-gradient(135deg,${g.color}33,${g.color}11)">
+          ${g.image ? `<img src="${g.image}" style="width:100%;height:100%;object-fit:cover;">` : g.emoji}
+        </div>
+        <div class="card-info">
+          <h3>${g.title}</h3>
+          <div class="tag">${g.category}</div>
+        </div>
+      </div>
+    `).join("");
+  } else {
+    grid.style.display = "none";
+    empty.style.display = "";
+  }
+}
+
+// Initial render
+render();
+</script>
+</body>
+</html>
